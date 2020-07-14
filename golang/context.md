@@ -5,21 +5,21 @@ Context专门用来简化处理单个请求的多个协程与**请求域的数�
 Context库提供了以下的公共接口来提供给用户程序使用：
 * TODO与Background 都是Context库提供的默认上下文，两者都是通过内部的emptyCtx实现的，只是互为别名，在实现上没有区别，一般默认使用Context.Background。一般情况下如果当前函数没有传递上下文的话我们会使用Context.Background作为起始的上下文。
     ``` go
-    func Context.TODO() Context.Context
-    func Context.Background() Context.Context
+    func Context.TODO() 
+    func Context.Background() 
     ```
 * WithCancel 从Context中衍生要给新的上下文和取消函数(CancelFunc)，如果我们调用取消函数则当前上下文和子上下文都会被取消,相关的Go协程也会同步收到改取消信号。
     ``` go
-    func Context.WithCancel(parent Context.Context) (Context.Context, Context.CancelFunc)
+    func Context.WithCancel(parent Context.Context) 
     ```
 * WithDeadline和WithTimeout从Context衍生出一个新的上下文和取消函数，如果用户调用取消函数或者到截至时间当前上下文和子上下文都会被取消，相关的协程也会收到取消函数，WithTimeout只是对WithDeadline的一层封装。
     ``` go
-    func Context.WithDeadline(parent Context.Context, d time.Time) (Context.Context, Context.CancelFunc)
-    func Context.WithTimeout(parent Context.Context, timeout time.Duration) (Context.Context, Context.CancelFunc)
+    func Context.WithDeadline(parent Context.Context, d time.Time) 
+    func Context.WithTimeout(parent Context.Context, timeout time.Duration) 
     ```
 * WithValue 主要是用来上下文用来传递数据的接口。
     ``` go
-    func Context.WithValue(parent Context.Context, key, value interface{}) Context.Context
+    func Context.WithValue(parent Context.Context, key, value interface{})
     ```
 Context的接口如下：
 ``` Go
