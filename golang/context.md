@@ -105,29 +105,30 @@ cancelCtx.cancel接口是一个内部接口，也是最重要的方法，这个�
 ``` Go
 func (c *cancelCtx) cancel(removeFromParent bool, err error) {
     if err == nil {
-		panic("context: internal error: missing cancel error")
-	}
-	c.mu.Lock()
-	if c.err != nil {
-		c.mu.Unlock()
-		return // already canceled
-	}
-	c.err = err
-	if c.done == nil {
-		c.done = closedchan
-	} else {
-		close(c.done)
-	}
-	for child := range c.children {
-		// NOTE: acquiring the child's lock while holding parent's lock.
-		child.cancel(false, err)
-	}
-	c.children = nil
-	c.mu.Unlock()
-
-	if removeFromParent {
-		removeChild(c.Context, c)
-	}
+	    panic("context: internal error: missing cancel error")
+    }
+    
+    c.mu.Lock()
+    if c.err != nil {
+	    c.mu.Unlock()
+	    return // already canceled
+    }
+    c.err = err
+    if c.done == nil {
+    	c.done = closedchan
+    } else {
+    	close(c.done)
+    }
+    for child := range c.children {
+    	// NOTE: acquiring the child's lock while holding parent's lock.
+    	child.cancel(false, err)
+    }
+    c.children = nil
+    c.mu.Unlock()
+    
+    if removeFromParent {
+    	removeChild(c.Context, c)
+    }
 }
 ```
 
