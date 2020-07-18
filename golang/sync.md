@@ -232,6 +232,10 @@ func poolCleanup() {
 ```
 
 #### poolqueue实现
+poolqueue.go 主要是提供一个无锁的队列提供给sync.pool用来缓存的，sync.pool使用的是poolChain，poolChain只是一个链表的指针，真正的无锁队列是由poolDqueue实现的，至于为什么不直接使用poolDqueue而是还要提供一个poolChain的链表结构呢，主要是因为poolDqueeu内部实现是一个固定大小的数组，如果只使用poolDqueue的话，poolDqueue分配多大是不好确定的，但是使用链表的结构就没有这个问题，因为可以随时再挂一个poolDqueue到链表中。poolChain的数据结构如下图:
+
+![poolChain](./assets/poolChain.drawio.svg)
+
 
 ### 小结
 ## cond
