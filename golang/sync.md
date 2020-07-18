@@ -236,7 +236,119 @@ poolqueue.go 主要是提供一个无锁的队列提供给sync.pool用来缓存�
 
 ![poolChain](./assets/poolChain.drawio.svg)
 
+**poolChain跟Dqueue的模型都是单生产者做消费者的模型**，为了确保在使用过程中确保单生产者的模型, sync.pool在放入数据的时候是关闭了抢占的而且写数据是写在当前P的poolLocal中的这保证就算是同一个P也不会有多个协程同时往队列里面写数据。往队列里面push数据的接口是pushHead，从获取数据的接口为popHead和popTail。
+生产者调用pushHead写数据popHead读数据，消费者调用popTail读数据。
+
+pushHead的流程如下：
+```go
+func (c *poolChain) pushHead(val interface{}) {
+    d := c.head
+   //分配第一个Dqueue，这里因为已经关了P的抢占所以没有竞争 
+    if d == nil { 
+        // Initialize the chain.
+        const initSize = 8 // Must be a power of 2
+        d = new(poolChainElt)
+        d.vals = make([]eface, initSize)
+        c.head = d
+        storePoolChainElt(&c.tail, d)
+    }
+
+    if d.pushHead(val) {
+        return
+    }
+
+    //走到这里说明当前的Dqueue已经满了，需要分配一个新的
+    //新的Dqueue的大小为前一个Dqueue的两倍大小
+
+    // The current dequeue is full. Allocate a new one of twice
+    // the size.
+    newSize := len(d.vals) * 2
+    if newSize >= dequeueLimit {
+        // Can't make it any bigger.
+        newSize = dequeueLimit
+    }
+
+    d2 := &poolChainElt{prev: d}
+    d2.vals = make([]eface, newSize)
+    c.head = d2
+    storePoolChainElt(&d.next, d2)
+    d2.pushHead(val)
+}
+```
+popHead的流程比较简单，就是从头部开始一个个遍历Dqueue,这里因为不用移动head指针所以逻辑不复杂。
+```go
+func (c *poolChain) popHead() (interface{}, bool) {
+    d := c.head
+    for d != nil {
+        if val, ok := d.popHead(); ok {
+            return val, ok
+        }
+        // There may still be unconsumed elements in the
+        // previous dequeue, so try backing up.
+        d = loadPoolChainElt(&d.prev)
+    }
+    return nil, false
+}
+```
+popTail的流程如下：
+```go
+func (c *poolChain) popTail() (interface{}, bool) {
+    d := loadPoolChainElt(&c.tail)
+    if d == nil {
+        return nil, false
+    }
+
+    for {
+        // It's important that we load the next pointer
+        // *before* popping the tail. In general, d may be
+        // transiently empty, but if next is non-nil before
+        // the pop and the pop fails, then d is permanently
+        // empty, which is the only condition under which it's
+        // safe to drop d from the chain.
+        d2 := loadPoolChainElt(&d.next)
+
+        if val, ok := d.popTail(); ok {
+            return val, ok
+        }
+
+        if d2 == nil {
+            // This is the only dequeue. It's empty right
+            // now, but could be pushed to in the future.
+            return nil, false
+        }
+
+        // The tail of the chain has been drained, so move on
+        // to the next dequeue. Try to drop it from the chain
+        // so the next pop doesn't have to look at the empty
+        // dequeue again.
+        if atomic.CompareAndSwapPointer((*unsafe.Pointer)(unsafe.Pointer(&c.tail)), unsafe.Pointer(d), unsafe.Pointer(d2
+            // We won the race. Clear the prev pointer so
+            // the garbage collector can collect the empty
+            // dequeue and so popHead doesn't back up
+            // further than necessary.
+            storePoolChainElt(&d2.prev, nil)
+        }
+        d = d2
+    }
+}
+```
+这里需要注意的是d.next必须先获取，如果不先保存d.next的话，会导致缓存的资源tail指针指的不对，比如如果d2:= loadPoolChainElt(&d.next)放在d.popTail这一行后面，假设执行完popTail是个空在获取d.next之前其他协程往队列里面写了很多数据，这时候当前协程继续执行下面的语句导致tail被调整，因为tail指针被调整，后面的协程也利用不到d的数据，但是此时其实d里面是有数据的。
+
+poolqueue中具体存储数据的是Dqueue结构，Dqueue的队列大小是固定的，存储数据的是一个ring结构的数组使用headTail标记，headTail的高32位表示head的索引，低32位表示tail的索引，这样使用一个64位的整数表示head和tail的好处是我们可以使用CAS对这两个值进行整体操作。数据是存储在vals数组中的：
+```go
+type poolDequeue {
+    headTail uint64
+    vals []eface
+}
+type eface struct {
+    typ, val unsafe.Pointer
+}
+```
+Dequeue提供了pack和unpack接口将tail，head打包到64位整数和从整数中获取tail和head。其他的pushHead，popHead和popTail的实现都比较简单易懂这里就不详细解释代码了。
 
 ### 小结
+sync.pool的实现还是很注意性能的，比如victim cache 无锁队列的使用，虽然代码量很少但是还是很值得学习对编写高性能的golang程序也是很有帮助的。
+
+总结一下sync.pool的功能针对long live的对象提供了一种缓存的功能，供后续的程序继续复用，降低gc的消耗，因为gc针对的主要是short live得对象。
 ## cond
 ## atomic
