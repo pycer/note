@@ -81,6 +81,7 @@ type poolLocal struct {
 为了降低cache missing poolLocal按照128字节填充，这样保证每个P的poolLocal都能放到不同的cacheline上。
 下图展示了多个P的poolLocal的结构:
 ![poollocal](./assets/poollocal.drawio.svg)
+
 poolChain的具体实现在下面分析poolqueue一节会详细分析。
 
 getSlow是从其他P的缓存队列中偷取一个，或者从上次gc放入victim中还没有被回收的对象中取一个缓存对象。
