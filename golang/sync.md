@@ -87,12 +87,14 @@ func (wg *WaitGroup) Add(delta int) {
     //假设这样一个场景：
     // 1. go1先调用Add(1)完成 此时waiter=0 counter=1
     // 2. go2调用Wait()等待go1结束，此时waiter=1, counter=1
-    // 3. go1 调用Done接口未完成，走到了判断*statep!= state完成但是还没有执行下一步*statep = 0, 此时counter=0， waiter=1
-    // 4. go3 调用Add(1)接口还未走完但是已经设置了counter，此时counter=1，waiter=1 下一步执行if v >0 发现条件满足，Add成功返回
-    // 5. 此时go2执行*statep = 0 然后通知waiter，此时waiter = 0， counter = 0
+    // 3. go1 调用Done接口未完成，走到了判断*statep!= state完成但是还没
+    //    有执行下一步*statep = 0, 此时counter=0， waiter=1
+    // 4. go3 调用Add(1)接口还未走完但是已经设置了counter，此时counter=1，
+    //    waiter=1 下一步执行if v >0 发现条件满足，Add成功返回
+    // 5. 此时go2执行*statep = 0 然后通知waiter，此时waiter = 0，counter = 0
     // 6. go1收到信号量，判断*statep = 0 成功，然后返回
-    // 从上面的步骤可以看出go2虽然Add成功了，但是waiter其实并没有等到go2结束就返回了，这就是问题所在
-    // 所以需要针对这种情况进行判断直接panic
+    // 从上面的步骤可以看出go2虽然Add成功了，但是waiter其实并没有等到go2结束就返回了,
+    // 这就是问题所在所以需要针对这种情况进行判断直接panic
     if w != 0 && delta > 0 && v == int32(delta) { 
         panic("sync: WaitGroup misuse: Add called concurrently with Wait")
     }
