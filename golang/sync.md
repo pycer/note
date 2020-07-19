@@ -2,6 +2,151 @@
 ## mutex
 ## rwmutex
 ## waitgroup
+### 设计目标
+在很多场景下，我们经常需要将一个大任务分解为很多小任务交给goroutine进行并发执行，提高运行效率。
+同时我们需要等待这些小任务全部结束以后才能进行下一步的动作，例如kubernetes调度模块中为pod选择
+一个node的过程中为了提高选择效率都是同时起多个goroutine进行匹配的，待所有的node都匹配一遍后才
+会进行下一步的动作。
+
+针对上面所说的场景golang提供了waitgroup组件，可以等待多个goroutine结束后再继续执行后面逻辑。
+一般的使用方式如下：
+```go
+...
+
+wg:= sync.WaitGroup{}
+
+for i := 0; i < int(count); i++ {
+    wg.Add(1)
+    go func (){ 
+        defer wg.Done()
+
+        // do something
+        ...
+    }()
+}
+
+wg.Wait()
+
+...
+```
+### 外部接口
+waitgroup主要提供了三个接口：
+```go
+func (wg *WaitGroup) Wait() //等待所有任务结束
+func (wg *WaitGroup) Add(delta int) // 添加任务是调用
+func (wg *WaitGroup) Done() //当前任务结束时调用
+``` 
+
+其中Done接口是通过Add接口实现的：
+```go
+func (wg *WaitGroup) Done() { 
+    wg.Add(-1)
+}
+```
+### 实现原理
+在描述WaitGroup怎么实现之前，我们考虑下如果我们自己去实现这个功能应该怎么做呢？
+1. 使用一个变量进行计数
+2. 添加任务或者任务结束时，atomic的加一或者减一
+3. 减一的时候判断变量是否已经为0
+4. 如果是0，就发送一个信号的channel中
+5. 等待者监听这个channel，如果收到消息就结束。
+
+其实自己实现一个类似的功能差不多就是上面几步。
+
+下面我们看一下go的WaitGroup是怎么实现的。WaitGroup的数据结构如下：
+```go
+type WaitGroup struct {
+    noCopy noCopy
+    state1 [3]uint32
+}
+```
+在sync库中我们经常会看到这个noCopy，这个noCopy主要是保证 sync.WaitGroup不会被开发者通过再赋值的方式拷贝，noCopy是一个struct{}的结构体，包含了此结构体的struct在执行go vet的时候如果发现结构体被复制那么就会报错，但是如果存在复制操作其实在编译过程中和运行过程中都是不会报错的。
+
+state1 字段分为三个部分，在64为系统和32位系统下稍有不同：
+
+![waitgroup](./assets/waitgroup.drawio.svg)
+
+waiter是等待者的计数，counter是任务计数，sema是信号量，用来通知waiter的。WaitGroup提供了state方法可以提取waitgroup的计数和信号量。waiter和counter放入同一个64位数中可以方便对一起进行原子操作。
+
+####  Add接口的实现
+```go
+func (wg *WaitGroup) Add(delta int) {
+    statep, semap := wg.state()
+
+    ...
+    //增加/减少(delta为负的情况系)任务计数
+    state := atomic.AddUint64(statep, uint64(delta)<<32)
+    v := int32(state >> 32)
+    w := uint32(state)
+
+    ...
+    // 如果counter小于0，肯定是调用者逻辑有问题了
+    if v < 0 {
+        panic("sync: negative WaitGroup counter")
+    }
+    //假设这样一个场景：
+    // 1. go1先调用Add(1)完成 此时waiter=0 counter=1
+    // 2. go2调用Wait()等待go1结束，此时waiter=1, counter=1
+    // 3. go1 调用Done接口未完成，走到了判断*statep!= state完成但是还没有执行下一步*statep = 0, 此时counter=0， waiter=1
+    // 4. go3 调用Add(1)接口还未走完但是已经设置了counter，此时counter=1，waiter=1 下一步执行if v >0 发现条件满足，Add成功返回
+    // 5. 此时go2执行*statep = 0 然后通知waiter，此时waiter = 0， counter = 0
+    // 6. go1收到信号量，判断*statep = 0 成功，然后返回
+    // 从上面的步骤可以看出go2虽然Add成功了，但是waiter其实并没有等到go2结束就返回了，这就是问题所在
+    // 所以需要针对这种情况进行判断直接panic
+    if w != 0 && delta > 0 && v == int32(delta) { 
+        panic("sync: WaitGroup misuse: Add called concurrently with Wait")
+    }
+    // 没有等待者或者还有任务没结束直接返回
+    if v > 0 || w == 0 {
+        return
+    
+    // 还有Add接口正在被调用，直接panic
+    if *statep != state {
+        panic("sync: WaitGroup misuse: Add called concurrently with Wait")
+    }
+    // 通知所有的waiter，任务都已经结束了
+    *statep = 0
+    for ; w != 0; w-- { // 通知所有的waiter
+        runtime_Semrelease(semap, false, 0)
+    }
+}
+```
+#### Wait接口的实现
+```go
+func (wg *WaitGroup) Wait() {
+    statep, semap := wg.state()
+
+    ...
+    for {
+        state := atomic.LoadUint64(statep)
+        v := int32(state >> 32)
+        w := uint32(state)
+        if v == 0 {
+
+            ...
+
+            return
+        }
+        //如果所有任务都已经添加完成了，等待所有任务结束
+        // 如果还有其他wait正在执行或者任务还在被添加则继续等到可以wait的时刻
+        if atomic.CompareAndSwapUint64(statep, state, state+1) {
+
+           ...
+
+            runtime_Semacquire(semap) // 等待所有任务结束
+            if *statep != 0 { // 如果此时*statep不等于0 说明有人不等wait结束就调用了Add接口直接panic
+                panic("sync: WaitGroup is reused before previous Wait has returned")
+            }
+
+            ...
+
+            return
+        }
+    }
+}
+```
+### 小结
+waitgroup的逻辑比较简单，从代码分析我们可以知道wait和Add不能同时进行，同时进行会panic，而且waitgroup支持多个waiter同时等待。
 ## once
 ## map
 ## pool
