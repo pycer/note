@@ -1,6 +1,102 @@
 # 同步(sync)
 ## mutex
+### 设计目标
+golang中一个很常用的排他锁，当一个goroutine加锁后，其他goroutine再加锁会一直等待到持有锁的协程释放锁为止。
+### 外部接口
+加锁和解锁
+```go
+func (m *Mutex) Lock() //加锁
+func (m *Mutext) Unlock() //解锁
+```
+
+### 实现原理
+Mutex的数据结构如下：
+```go
+type Mutex struct {
+    state int32
+    sema  uint32
+}
+```
+state是状态字段，这个字段比较复杂，分为四个部分：
+
+* **bit 0**位表示是否已加锁
+* **bit 1**位表示是否从正常模式唤醒
+* **bit 2**位表示是否进入饥饿模式
+* 剩余的bit位表示在这个锁上等待的goroutine数量
+
+![mutex](./assets/mutex.drawio.svg)
+
+Mutex中表示state中0~2位的常量如下：
+```go
+const (
+    mutexLocked = 1 << iota
+    mutexWoken
+    mutexStarving
+
+    ...
+
+)
+```
+
+Mutex中的sema字段是用来通知等待的goroutine的信号量。
+
+Mutex 分为两种模式：
+* **正常模式**
+* **饥饿模式**
+
+根据Mutex的注释对这两种模式的描述, 对应的中文解释如下:
+> 互斥锁有两种状态: 正常模式和饥饿模式
+> 在正常模式下等待的goroutine按照FIFO的顺序等待锁的释放。但是唤醒的goroutine不会直接拥有锁，而是要和新请求锁的goroutine竞争锁的拥有。新请求锁的goroutine具有很大的优势：它正在CPU上面执行，而且可能有好几个，所以唤醒的goroutine有很大可能会竞争失败。在这种情况下，这个被唤醒的goroutine会加入到等待队列的前面。如果一个等待的goroutine超过1ms的时间没有获得锁，那么它会把锁转变为饥饿模式。
+> 在饥饿模式下，锁的所有权将从unlock的goroutine直接交给等待队列中的第一个。新来的goroutine将不会尝试去获取锁，即使锁看上去是unlock状态，也不会尝试自旋操作，而是直接放到等待队列的尾部。
+> 如果一个等待的goroutine获取了锁，并且满足一下其中任何一个条件：(1) 它是等待队列中的最后一个;(2)它的等待时间小于1ms。它会将锁的模式设置为正常状态。
+> 正常状态的锁有比较好的性能表现，饥饿模式也很重要，它能够阻止尾部延迟的现象。
+
+#### Lock的实现
+
+```go
+func (m *Mutex) Lock() {
+    if atomic.CompareAndSwapInt32(&m.state, 0, mutexLocked) {
+        ...
+        return
+    }
+
+    m.lockSlow()
+}
+```
+跳过race的逻辑，第一个goroutine加锁的时候如果发现直接可以加锁，那么就CAS加锁后返回，这相当于一个快速路径了；如果不能加锁那么证明锁已被别人持有，则进入lockSlow的逻辑。lockSlow里面要处理的分支特别多。大概可以分为下面的几个部分：
+![lockslow](./assets/lockslow.drawio.svg)
+这些逻辑全部再lockSlow中完成，所以可以想象lockSlow的逻辑必将非常复杂,但是其主要核心逻辑就如上图描述的是获取锁和更新锁。
+```go 
+func (m *Mutex) lockSlow() {
+    var waitStartTime int64
+    starving := false
+    awoke := false
+    iter := 0
+    old := m.state
+
+    for {
+        if old&(mutexLocked|mutexStarving) == mutexLocked && runtime_canSpin(iter) {
+
+            if !awoke && old&mutexWoken == 0 && old >> mutexWaiterShift != 0 &&
+                atomic.CompareAndSwapInt32(&m.state, old, old|mutexWoken) {
+                    awoke = true
+                }
+                runtime_doSpin()
+                iter++
+                old = m.state
+                continue
+        }
+    }
+}
+```
+#### Unlock的实现
+
+### 总结
+
 ## rwmutex
+读写锁。
+### 外部接口
+### 实现原理
 ## waitgroup
 ### 设计目标
 在很多场景下，我们经常需要将一个大任务分解为很多小任务交给goroutine进行并发执行，提高运行效率。
