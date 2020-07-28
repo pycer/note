@@ -65,6 +65,7 @@ func (m *Mutex) Lock() {
 ```
 跳过race的逻辑，第一个goroutine加锁的时候如果发现直接可以加锁，那么就CAS加锁后返回，这相当于一个快速路径了；如果不能加锁那么证明锁已被别人持有，则进入lockSlow的逻辑。lockSlow里面要处理的分支特别多。大概可以分为下面的几个部分：
 ![lockslow](./assets/lockslow.drawio.svg)
+
 这些逻辑全部再lockSlow中完成，所以可以想象lockSlow的逻辑必将非常复杂,但是其主要核心逻辑就如上图描述的是获取锁和更新锁。
 ```go 
 func (m *Mutex) lockSlow() {
@@ -75,8 +76,7 @@ func (m *Mutex) lockSlow() {
     old := m.state
 
     for {
-        if old&(mutexLocked|mutexStarving) == mutexLocked && runtime_canSpin(iter) {
-
+        if old&(mutexLocked|mutexStarving) == mutexLocked && runtime_canSpin(iter) {  
             if !awoke && old&mutexWoken == 0 && old >> mutexWaiterShift != 0 &&
                 atomic.CompareAndSwapInt32(&m.state, old, old|mutexWoken) {
                     awoke = true
