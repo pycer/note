@@ -168,6 +168,51 @@ func (m *Mutex) lockSlow() {
 
 #### Unlock的实现
 
+unlock的代码如下：
+```go
+func (m *Mutex) Unlock() {
+
+    ...
+
+    new := atomic.AddInt32(&m.state, -mutexLocked)
+    if new != 0 { 
+        m.unlockSlow(new) // 走慢速路径解锁
+    }
+}
+```
+如果state清理mutexLocked后发现其他标记为不为空，那么锁可能被人在等待，或者是异常了，这时候要走慢速路径unlockSlow来解锁。
+```go
+func (m *Mutex) unlockSlow(new int32) {
+    // 如果有goroutine已经调用过unlock了那么直接报错。
+    if (new+mutexLocked)&mutexLocked == 0 {
+        throw("sync: unlock of unlocked mutex") 
+    }
+    // 正常模式的解锁
+    if new&mutexStarving == 0 {
+        old := new
+        for {
+            // 如果已经没有等待锁的goroutine了或者锁已经被其他人设置了直接返回
+            if old>>mutexWaiterShift == 0 || old&(mutexLocked|mutexWoken|mutexStarving) != 0 {
+                return
+            }
+            // 设置唤醒标记，并将waiter数-1
+            new = (old - 1<<mutexWaiterShift) | mutexWoken
+            //设置新的锁状态，同时唤醒一个等待的goroutine
+            if atomic.CompareAndSwapInt32(&m.state, old, new) {
+                runtime_Semrelease(&m.sema, false, 1)
+                return
+            }
+            old = m.state
+        }
+    } else {
+        // 饥饿模式下，直接唤醒等待队列中的第一个goroutine, 这时候state的mutexLocked还没有设置，
+        // 唤醒的goroutine会设置它。这个时候如果有其他goroutine来加锁，因为锁处于饥饿模式下，该
+        // goroutine也就不会尝试获取锁，而是直接进入等待队列。
+       runtime_Semrelease(&m.sema, true, 1) 
+    }
+}
+```
+
 ### 总结
 
 ## rwmutex
