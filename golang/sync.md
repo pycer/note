@@ -1,7 +1,7 @@
 # 同步(sync)
 ## mutex
 ### 设计目标
-golang中一个很常用的排他锁，当一个goroutine加锁后，其他goroutine再加锁会一直等待到持有锁的协程释放锁为止。
+golang中很常用的互斥锁，当一个goroutine加锁后，其他goroutine再加锁会一直等待到持有锁的协程释放锁为止。
 ### 外部接口
 加锁和解锁
 ```go
@@ -214,11 +214,135 @@ func (m *Mutex) unlockSlow(new int32) {
 ```
 
 ### 总结
+mutex锁的实现比较复杂，尤其是加锁的流程，涉及到自旋，信号量和调度等概念。加锁中的比较重要的部分如下：
+* 如果互斥锁处于初始化状态，则第一个加锁的goroutine获取锁
+* 在正常模式下，如果满足goroutine自旋条件则尝试自旋获取锁
+* 如果goroutine在等待队列中查过1ms，锁就会进入饥饿模式
+* 如果goroutine是等待队列中的最后一个或者等待时间小于1ms，锁会切换为正常模式
+* 如果在正常模式下，就算goroutine被唤醒也不一定能拿到锁。
+
+解锁的逻辑比较清晰简单：
+* 当锁已经被Unlock了再次调用Unlock就会抛出异常。这里会有一个有趣的现象就是如果有两个goroutine A和B, 如果A 调用了Lock，然后B调用Unlock，那么A再调用Unlock就会异常，也就是锁可以被未持有的goroutine给解锁了。
+* 当锁处于饥饿模式的时候，锁会直接交给等待队列中的第一个goroutine
+* 当锁在正常模式下，如果还有等待者就唤醒一个等待者，如果没有等待者那就流程结束。
 
 ## rwmutex
-读写锁。
+### 设计目标
+读写锁适合在读多写少的场景下使用，多个读者可以并行获取锁。在读多写少的场景下性能会比互斥锁高。
 ### 外部接口
+
+```go
+func (rw * RWMutex) RLock()  // 读者加锁接口
+func (rw *RWMutex) RUnlock() // 读者解锁接口
+func (rw *RWMutex) Lock()    // 写者加锁接口
+func (rw *RWMutex) Unlock()  // 写者解锁接口
+```
+
 ### 实现原理
+
+读写锁是基于互斥锁和信号量实现的，RWMutex的数据结构如下：
+```go
+type RWMutex struct {
+    // 写者持有，其他写者阻塞在这把互斥锁上面
+    w           Mutex       
+    // 通知写者的信号量，如果所有的读者都释放读锁以后需要通过这个信号量通知写者
+    writerSem   uint32      
+    // 通知读者的信号量，如果所有写者释放锁的时候通过这个信号量通知读者
+    readerSem   uint32      
+    // 读者的数量
+    readerCount int32       
+    // 等待锁的读者数量
+    readerWait  int32       
+}
+```
+#### Rlock
+
+```go
+func (rw *RWMutex) RLock() {
+    
+    ...
+
+    if atomic.AddInt32(&rw.readerCount, 1) < 0 {
+        runtime_SemacquireMutex(&rw.readerSem, false, 0)
+    }
+
+    ...
+
+}
+```
+Rlock的逻辑非常简单，如果有写者持有锁，那么就等待在信号量上，如果没有写者持有锁，那么什么操作也没有直接返回。
+
+#### RUnlock
+```go
+func (rw *RWMutex) RUnlock() {
+
+    ...
+
+    // 如果readerCount为负值，说明有写者阻塞等待持有锁，进入慢速路径
+    if r := atomic.AddInt32(&rw.readerCount, -1); r < 0 {
+        rw.rUnlockSlow(r)
+    }
+
+    ...
+}
+
+func (rw *RWMutex) rUnlockSlow(r int32) {
+    // 解锁了一个空闲的锁(r+1==0),或者解锁了一个写锁(r+1==-rwmutexMaxReaders) 这两种是异常
+    if r+1 == 0 || r+1 == -rwmutexMaxReaders {
+        throw("sync: RUnlock of unlocked RWMutex")
+    }
+
+    // 如果没有其他的读者了，唤醒写者
+    if atomic.AddInt32(&rw.readerWait, -1) == 0 {
+        runtime_Semrelease(&rw.writerSem, false, 1)
+    }
+}
+```
+
+#### Lock
+```go
+func (rw *RWMutex) Lock() {
+    ...
+
+    rw.wLock() //只支持一个写着，其他写着阻塞在互斥锁上
+    // 本质上标记有锁者，这里也说明了为啥readerCount会出现负值了
+    r := atomic.AddInt32(&rw.readerCount, -rwmutexMaxReaders) + rwmutexMaxReaders
+    // 如果是读者先加了锁，这里需要判断如果还有读者，这时候需要告诉读者有写锁再等待
+    if r != 0 && atomic.AddInt32(&rw.readerWait, r) != 0 {
+        runtime_SemacquireMutex(&rw.writerSem, false, 0)
+    }
+
+    ...
+}
+```
+
+#### Unlock
+
+```go
+func (rw *RWMutex) Unlock() {
+    
+    ...
+
+    r := atomic.AddInt32(&rw.readerCount, rwmutexMaxReaders)
+    if r >= rwmutexMaxReaders {
+        ...
+        throw("sync: Unlock of unlocked RWMutex")
+    }
+    // 唤醒所有阻塞的读者
+    for i := 0; i < int(r); i++ {
+        runtime_Semrelease(&rw.readerSem, false, 0)
+    }
+
+    //其他写者可以尝试加锁了
+    rw.w.Unlock()
+    
+}
+```
+
+### 总结
+
+读写锁的实现还是比较简单的，没有复杂的逻辑。读写锁同时支持的等待的读者数量是rwmutexMaxReaders目前这个值是1亿(1<<30)，总的来讲读写锁提供了更细粒度的控制，适合读多写少的场景。
+
 ## waitgroup
 ### 设计目标
 在很多场景下，我们经常需要将一个大任务分解为很多小任务交给goroutine进行并发执行，提高运行效率。
