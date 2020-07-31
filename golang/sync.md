@@ -492,7 +492,15 @@ func (wg *WaitGroup) Wait() {
 ### 小结
 waitgroup的逻辑比较简单，从代码分析我们可以知道wait和Add不能同时进行，同时进行会panic，而且waitgroup支持多个waiter同时等待。
 ## once
+### 设计目标
+### 外部接口
+### 实现原理
+
 ## map
+### 设计目标
+### 外部接口
+### 实现原理
+
 ## pool
 ### 设计目标
 sync.pool 包主要是为了将可重用的对象缓存起来，降低频繁分配内存导致的频繁GC带来的在高性能场景下带来的程序性能的下降。
@@ -841,5 +849,92 @@ Dequeue提供了pack和unpack接口将tail，head打包到64位整数和从整�
 sync.pool的实现还是很注意性能的，比如victim cache 无锁队列的使用，虽然代码量很少但是还是很值得学习对编写高性能的golang程序也是很有帮助的。
 
 总结一下sync.pool的功能针对long live的对象提供了一种缓存的功能，供后续的程序继续复用，降低gc的消耗，因为gc针对的主要是short live得对象。
-## cond
-## atomic
+## cond 条件变量
+### 设计目标
+条件变量主要是让满足特定条件的多个goroutine被唤醒。使用条件变量的都要传入一个互斥锁。
+### 对外接口
+```go
+func NewCond(l Locker) *Cond // 创建一个条件变量
+
+func (c *Cond) Wait() // 等待条件变量满足条件，注意再调用Wait之前一定要加锁，不然程序可能崩溃
+
+func (c *Cond) Signal() // 唤醒任意一个等待的goroutine
+
+func (c *Cond) Broadcast() // 唤醒所有等待的goroutine
+
+```
+
+### 实现原理
+条件变量的实现主要是通过go runtime提供的通知链和外部提供的互斥锁实现的。
+```go
+type Cond struct {
+    noCopy  noCopy //go vet 检查是的指示结构体不能copy
+    L Locker       // 互斥锁
+    notify  notifyList //通知链
+    checker copyChecker // 运行时copy检查，防止a=b这种复制操作
+}
+```
+#### NewCond
+
+```go
+func NewCond(l Locker) *Cond {
+    return &Cond{L: l}
+}
+```
+NewCond创建一个新的互斥变量，这个接口显而易见
+
+#### Wait
+```go
+func (c *Cond) Wait() {
+    c.checker.check()  //检查Cond是否合法，通过a=b这种方式的是非法的
+    t := runtime_notifyListAdd(&c.notify) //将goroutine加入到通知链中
+    c.L.Unlock() // 加入通知链以后就可以释放锁了
+    runtime_notifyListWait(&c.notify, t) // 等待通知
+    c.L.Lock()
+}
+```
+如果goroutine需要等待某些条件满足应该调用Wait接口，调用这个接口之前一定要加锁，其一般的使用逻辑如下：
+```go
+
+    ...
+    c.L.Lock()
+    for ! condition() {
+        c.Wait()
+    }
+
+    ... make use of condition ...
+    c.L.Unlock()
+```
+#### Signal
+Signal 接口是唤醒单个等待的goroutine(也就是调用了Wait接口的goroutine)
+
+```go
+func (c *Cond) Signal() {
+    c.checker.check()
+    runtime_notifyListNotifyOne(&c.notify)
+}
+```
+
+#### Broadcast
+Broadcast 接口是通知所有等待的goroutine。
+```go
+func (c *Cond) Broadcast() {
+    c.checker.check()
+    runtime_notifyListNotifyAll(&c.notify)
+}
+```
+### 小结
+golang的条件变量的实现比较简单，Cond会进行自我检查防止条件变量被复制然后被使用这种错误的方式。主要是通过check接口实现的：
+```go
+func (c *copyChecker) check() {
+    // 如果初始化后，则将Cond地址的指针设置到copyChecker上，如果
+    // 错误的使用了a=b这种方式新的Cond的地址肯定跟保存的地址不一致
+    // 这种情况直接panic
+   if uintptr(*c) != uintptr(unsafe.Pointer(c)) &&
+     !atomic.CompareAndSwapUintptr((*uintptr)(c), 0, uintptr(unsafe.Pointer(c))) &&
+     uintptr(*c) != uintptr(unsafe.Pointer(c)) {
+         panic("sync.Cond is copied")
+     }
+}
+```
+Cond的使用场景也是比较明确的，主要是在等待的时候要先加锁。
