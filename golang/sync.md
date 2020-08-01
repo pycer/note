@@ -493,9 +493,31 @@ func (wg *WaitGroup) Wait() {
 waitgroup的逻辑比较简单，从代码分析我们可以知道wait和Add不能同时进行，同时进行会panic，而且waitgroup支持多个waiter同时等待。
 ## once
 ### 设计目标
+once保证golang中的某一段代码只执行一次
 ### 外部接口
-### 实现原理
+接口就一个
+```go
+func (o *Once) Do(f func())
+```
 
+### 实现原理
+once的实现比较简单，以前的实现是通过一个原子变量简单的设置一个标记，但是这样的实现是有问题的，因为当设置标记返回后传入的函数还没有执行完呢，这会导致依赖函数执行完成的代码逻辑异常。后面就修改为了通过一把互斥锁，等待函数执行完成后再设置。
+```go
+func (o *Once) Do(f func()) {
+    if atomic.LoadUint32(&o.done) == 0 {
+        o.doSlow(f)
+    }
+}
+
+func (o *Once) doSlow(f func()) {
+    o.m.Lock()
+    defer o.m.Unlock()
+    if o.done == 0 {
+        defer atomic.StoreUint32(&o.done, 1)
+        f()
+    }
+}
+```
 ## map
 ### 设计目标
 ### 外部接口
