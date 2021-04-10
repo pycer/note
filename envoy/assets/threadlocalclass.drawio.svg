@@ -1,1 +1,325 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1081px" height="871px" viewBox="-0.5 -0.5 1081 871" content="&lt;mxfile host=&quot;b5ff7282-86b2-4477-a1dd-fb34e32eb2a3&quot; modified=&quot;2020-12-03T06:15:52.138Z&quot; agent=&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.51.1 Chrome/83.0.4103.122 Electron/9.3.3 Safari/537.36&quot; etag=&quot;e2wCTcgqprC8c4tWPXY_&quot; version=&quot;12.2.4&quot; pages=&quot;1&quot;&gt;&lt;diagram id=&quot;fyQS8TKatzoOjtdmcGir&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;"><defs><clipPath id="mx-clip-69-261-302-26-0"><rect x="69" y="261" width="302" height="26"/></clipPath><clipPath id="mx-clip-69-287-302-26-0"><rect x="69" y="287" width="302" height="26"/></clipPath><clipPath id="mx-clip-69-321-302-26-0"><rect x="69" y="321" width="302" height="26"/></clipPath><clipPath id="mx-clip-69-347-302-28-0"><rect x="69" y="347" width="302" height="28"/></clipPath><clipPath id="mx-clip-69-375-302-28-0"><rect x="69" y="375" width="302" height="28"/></clipPath><clipPath id="mx-clip-69-403-302-28-0"><rect x="69" y="403" width="302" height="28"/></clipPath><clipPath id="mx-clip-544-261-482-26-0"><rect x="544" y="261" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-287-482-26-0"><rect x="544" y="287" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-313-482-26-0"><rect x="544" y="313" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-339-482-26-0"><rect x="544" y="339" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-373-482-26-0"><rect x="544" y="373" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-399-482-26-0"><rect x="544" y="399" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-425-482-26-0"><rect x="544" y="425" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-451-482-26-0"><rect x="544" y="451" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-477-482-26-0"><rect x="544" y="477" width="482" height="26"/></clipPath><clipPath id="mx-clip-544-503-482-26-0"><rect x="544" y="503" width="482" height="26"/></clipPath><clipPath id="mx-clip-70-597-322-26-0"><rect x="70" y="597" width="322" height="26"/></clipPath><clipPath id="mx-clip-70-623-322-26-0"><rect x="70" y="623" width="322" height="26"/></clipPath><clipPath id="mx-clip-109-99-222-26-0"><rect x="109" y="99" width="222" height="26"/></clipPath><clipPath id="mx-clip-704-49-152-26-0"><rect x="704" y="49" width="152" height="26"/></clipPath><clipPath id="mx-clip-524-709-252-26-0"><rect x="524" y="709" width="252" height="26"/></clipPath></defs><g><path d="M 65 256 L 65 230 L 375 230 L 375 256" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 65 256 L 65 426 L 375 426 L 375 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 65 256 L 375 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="219.5" y="248.5">SlotImpl</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-261-302-26-0)" font-size="12px"><text x="70.5" y="273.5">+ parent_:InstanceImpl</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-287-302-26-0)" font-size="12px"><text x="70.5" y="299.5">+ index_: const uint32_t</text></g><path d="M 65 312 L 375 312" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-321-302-26-0)" font-size="12px"><text x="70.5" y="333.5">+ set(InitializeCb): void</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-347-302-28-0)" font-size="12px"><text x="70.5" y="359.5">+ get(InitializeCb): ThreadLocalObjectSharedPtr</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-375-302-28-0)" font-size="12px"><text x="70.5" y="387.5">+ runOnAllThreads(UpdateCb): void</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-69-403-302-28-0)" font-size="12px"><text x="70.5" y="415.5">+ runOnAllThreads(UpdateCb, Event::PostCb):void</text></g><path d="M 220 230 L 220 134.12" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 220 121.12 L 226.5 134.12 L 213.5 134.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 390 327.64 L 537.76 328.99" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><ellipse cx="383" cy="327.57" rx="7" ry="7" fill="none" stroke="#000000" pointer-events="none"/><path d="M 376 327.51 L 390 327.64 M 383.06 320.57 L 382.94 334.57" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 529.84 333.42 L 538.88 329 L 529.92 324.42" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 540 256 L 540 230 L 1030 230 L 1030 256" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 540 256 L 540 524 L 1030 524 L 1030 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 540 256 L 1030 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="784.5" y="248.5">Envoy::ThreadLocal::InstanceImpl</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-261-482-26-0)" font-size="12px"><text x="545.5" y="273.5">-  slots_:std::vector&lt;Slot*&gt;</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-287-482-26-0)" font-size="12px"><text x="545.5" y="299.5">- free_slot_indexes_:std::list&lt;uint32_t&gt;</text></g><g fill="#FF0000" font-family="Helvetica" font-weight="bold" clip-path="url(#mx-clip-544-313-482-26-0)" font-size="12px"><text x="545.5" y="325.5">- thread_local_data_:static thread_local ThreadLocalData</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-339-482-26-0)" font-size="12px"><text x="545.5" y="351.5">- registered_threads_:std::list&lt;std::reference_wrapper&lt;Event::Dispatcher&gt;&gt;</text></g><path d="M 540 364 L 1030 364" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-373-482-26-0)" font-size="12px"><text x="545.5" y="385.5">+ allocateSlot():SlotPtr</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-399-482-26-0)" font-size="12px"><text x="545.5" y="411.5">+ registerThread(Event::Dispatcher, bool):void</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-425-482-26-0)" font-size="12px"><text x="545.5" y="437.5">- removeSlot(uint32_t ): void</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-451-482-26-0)" font-size="12px"><text x="545.5" y="463.5">- runOnAllThreads(Event::PostCb):void</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-477-482-26-0)" font-size="12px"><text x="545.5" y="489.5">- runOnAllThreads(Event::PostCb, Event::PostCb main_callback):void </text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-544-503-482-26-0)" font-size="12px"><text x="545.5" y="515.5">- setThreadLocal(uint32_t index, ThreadLocalObjectSharedPtr object ): static void</text></g><path d="M 66 592 L 66 566 L 396 566 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 66 592 L 66 644 L 396 644 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 66 592 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="12px"><text x="230.5" y="583.5">ThreadLocalData</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-70-597-322-26-0)" font-size="12px"><text x="71.5" y="609.5">+ dispatcher_:Event::Dispatcher</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-70-623-322-26-0)" font-size="12px"><text x="71.5" y="635.5">+ data_:std::vector&lt;ThreadLocalObjectSharedPtr&gt;</text></g><path d="M 224 549 L 224 490 Q 224 480 234 480 L 410 480 Q 420 480 420 470 L 420 357 Q 420 347 430 347 L 537.76 347" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><ellipse cx="224" cy="556" rx="7" ry="7" fill="none" stroke="#000000" pointer-events="none"/><path d="M 224 563 L 224 549 M 217 556 L 231 556" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 529.88 351.5 L 538.88 347 L 529.88 342.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 940 120 L 1066 120 L 1080 134 L 1080 190 L 940 190 L 940 120 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 1066 120 L 1066 134 L 1080 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(942.5,121.5)"><foreignObject style="overflow:visible;" pointer-events="none" width="136" height="40"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 136px; white-space: nowrap; overflow-wrap: normal; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">这是线程本地存储TLS，每个线程都有一份自己的存储区</div></div></foreignObject></g><path d="M 105 86 L 105 60 L 335 60 L 335 86" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 105 86 L 105 120 L 335 120 L 335 86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 105 86 L 335 86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="219.5" y="78.5">Slot</text></g><path d="M 105 90 L 335 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-109-99-222-26-0)" font-size="12px"><text x="110.5" y="111.5">+getTyped:template &lt;class T&gt; T&amp;</text></g><path d="M 700 36 L 700 10 L 860 10 L 860 36" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 700 36 L 700 70 L 860 70 L 860 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 700 36 L 860 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="779.5" y="28.5">SlotAllocator</text></g><path d="M 700 40 L 860 40" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-704-49-152-26-0)" font-size="12px"><text x="705.5" y="61.5">+ allocateSlot:SlotPtr</text></g><path d="M 785 230 L 783.21 84.12" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 783.05 71.12 L 789.71 84.04 L 776.71 84.2 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 520 696 L 520 670 L 780 670 L 780 696" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 520 696 L 520 730 L 780 730 L 780 696" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 520 696 L 780 696" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px"><text x="649.5" y="688.5">ThreadLocalObject</text></g><path d="M 520 700 L 780 700" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-524-709-252-26-0)" font-size="12px"><text x="525.5" y="721.5">+ asType: template &lt;class T&gt; T&amp;</text></g><path d="M 860 574 L 1036 574 L 1050 588 L 1050 644 L 860 644 L 860 574 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 1036 574 L 1036 588 L 1050 588" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(862.5,575.5)"><foreignObject style="overflow:visible;" pointer-events="none" width="186" height="26"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 186px; white-space: nowrap; overflow-wrap: normal; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">所有需要被threadlocal存储的对象都要继承ThreadLocalObject基类</div></div></foreignObject></g><path d="M 797.14 308 L 940 155" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 780 685 L 860 609" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 375 0 L 576 0 L 590 14 L 590 90 L 375 90 L 375 0 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 576 0 L 576 14 L 590 14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(377.5,1.5)"><foreignObject style="overflow:visible;" pointer-events="none" width="211" height="54"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 211px; white-space: nowrap; overflow-wrap: normal; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">所有需要被存储的信息都会被分配一个Slot槽位，作为以后存储数据和获取数据的唯一接口。index_作为索引指示了在每个TLS本地存储的数据的位置</div></div></foreignObject></g><path d="M 220 60 L 376.08 30.96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 0 730 L 251 730 L 265 744 L 265 870 L 0 870 L 0 730 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 251 730 L 251 744 L 265 744" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g transform="translate(2.5,731.5)"><foreignObject style="overflow:visible;" pointer-events="none" width="261" height="124"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 261px; white-space: nowrap; overflow-wrap: normal; text-align: left;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;white-space:normal;">线程TLS存储的对象在data_中，data_中具体某一个槽位上实际存储的是一个数据对象的share_ptr的智能指针，也就是说线程之间是共享同一个对象的<br />dispatcher_是每个线程的event_base句柄，slot中runOnAllThreads会向每个线程的dispatcher_中提交任务，每个线程的下次事件循环的时候就会执行这个任务，就可以将ThreadLocalObjectPtr存放到data_中对应的位置上</div></div></foreignObject></g><path d="M 132.5 730 L 186.12 644" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/></g></svg>
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1081px" height="871px" viewBox="-0.5 -0.5 1081 871" content="&lt;mxfile pages=&quot;1&quot;&gt;&lt;diagram id=&quot;fyQS8TKatzoOjtdmcGir&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-69-261-302-26-0">
+            <rect x="69" y="261" width="302" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-69-287-302-26-0">
+            <rect x="69" y="287" width="302" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-69-321-302-26-0">
+            <rect x="69" y="321" width="302" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-69-347-302-28-0">
+            <rect x="69" y="347" width="302" height="28"/>
+        </clipPath>
+        <clipPath id="mx-clip-69-375-302-28-0">
+            <rect x="69" y="375" width="302" height="28"/>
+        </clipPath>
+        <clipPath id="mx-clip-69-403-302-28-0">
+            <rect x="69" y="403" width="302" height="28"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-261-482-26-0">
+            <rect x="544" y="261" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-287-482-26-0">
+            <rect x="544" y="287" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-313-482-26-0">
+            <rect x="544" y="313" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-339-482-26-0">
+            <rect x="544" y="339" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-373-482-26-0">
+            <rect x="544" y="373" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-399-482-26-0">
+            <rect x="544" y="399" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-425-482-26-0">
+            <rect x="544" y="425" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-451-482-26-0">
+            <rect x="544" y="451" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-477-482-26-0">
+            <rect x="544" y="477" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-544-503-482-26-0">
+            <rect x="544" y="503" width="482" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-70-597-322-26-0">
+            <rect x="70" y="597" width="322" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-70-623-322-26-0">
+            <rect x="70" y="623" width="322" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-109-99-222-26-0">
+            <rect x="109" y="99" width="222" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-704-49-152-26-0">
+            <rect x="704" y="49" width="152" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-524-709-252-26-0">
+            <rect x="524" y="709" width="252" height="26"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 65 256 L 65 230 L 375 230 L 375 256" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 65 256 L 65 426 L 375 426 L 375 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 65 256 L 375 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="219.5" y="247.5">
+                SlotImpl
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-261-302-26-0)" font-size="12px">
+            <text x="70.5" y="273.5">
+                + parent_:InstanceImpl
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-287-302-26-0)" font-size="12px">
+            <text x="70.5" y="299.5">
+                + index_: const uint32_t
+            </text>
+        </g>
+        <path d="M 65 312 L 375 312" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-321-302-26-0)" font-size="12px">
+            <text x="70.5" y="333.5">
+                + set(InitializeCb): void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-347-302-28-0)" font-size="12px">
+            <text x="70.5" y="359.5">
+                + get(InitializeCb): ThreadLocalObjectSharedPtr
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-375-302-28-0)" font-size="12px">
+            <text x="70.5" y="387.5">
+                + runOnAllThreads(UpdateCb): void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-69-403-302-28-0)" font-size="12px">
+            <text x="70.5" y="415.5">
+                + runOnAllThreads(UpdateCb, Event::PostCb):void
+            </text>
+        </g>
+        <path d="M 220 230 L 220 134.12" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 220 121.12 L 226.5 134.12 L 213.5 134.12 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 390 327.64 L 537.76 328.99" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="383" cy="327.57" rx="7" ry="7" fill="none" stroke="#000000" pointer-events="none"/>
+        <path d="M 376 327.51 L 390 327.64 M 383.06 320.57 L 382.94 334.57" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 529.84 333.42 L 538.88 329 L 529.92 324.42" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 540 256 L 540 230 L 1030 230 L 1030 256" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 540 256 L 540 524 L 1030 524 L 1030 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 540 256 L 1030 256" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="784.5" y="247.5">
+                Envoy::ThreadLocal::InstanceImpl
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-261-482-26-0)" font-size="12px">
+            <text x="545.5" y="273.5">
+                -  slots_:std::vector&lt;Slot*&gt;
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-287-482-26-0)" font-size="12px">
+            <text x="545.5" y="299.5">
+                - free_slot_indexes_:std::list&lt;uint32_t&gt;
+            </text>
+        </g>
+        <g fill="#FF0000" font-family="Helvetica" font-weight="bold" pointer-events="none" clip-path="url(#mx-clip-544-313-482-26-0)" font-size="12px">
+            <text x="545.5" y="325.5">
+                - thread_local_data_:static thread_local ThreadLocalData
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-339-482-26-0)" font-size="12px">
+            <text x="545.5" y="351.5">
+                - registered_threads_:std::list&lt;std::reference_wrapper&lt;Event::Dispatcher&gt;&gt;
+            </text>
+        </g>
+        <path d="M 540 364 L 1030 364" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-373-482-26-0)" font-size="12px">
+            <text x="545.5" y="385.5">
+                + allocateSlot():SlotPtr
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-399-482-26-0)" font-size="12px">
+            <text x="545.5" y="411.5">
+                + registerThread(Event::Dispatcher, bool):void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-425-482-26-0)" font-size="12px">
+            <text x="545.5" y="437.5">
+                - removeSlot(uint32_t ): void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-451-482-26-0)" font-size="12px">
+            <text x="545.5" y="463.5">
+                - runOnAllThreads(Event::PostCb):void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-477-482-26-0)" font-size="12px">
+            <text x="545.5" y="489.5">
+                - runOnAllThreads(Event::PostCb, Event::PostCb main_callback):void
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-544-503-482-26-0)" font-size="12px">
+            <text x="545.5" y="515.5">
+                - setThreadLocal(uint32_t index, ThreadLocalObjectSharedPtr object ): static void
+            </text>
+        </g>
+        <path d="M 66 592 L 66 566 L 396 566 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 66 592 L 66 644 L 396 644 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 66 592 L 396 592" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="230.5" y="583.5">
+                ThreadLocalData
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-70-597-322-26-0)" font-size="12px">
+            <text x="71.5" y="609.5">
+                + dispatcher_:Event::Dispatcher
+            </text>
+        </g>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-70-623-322-26-0)" font-size="12px">
+            <text x="71.5" y="635.5">
+                + data_:std::vector&lt;ThreadLocalObjectSharedPtr&gt;
+            </text>
+        </g>
+        <path d="M 224 549 L 224 490 Q 224 480 234 480 L 410 480 Q 420 480 420 470 L 420 357 Q 420 347 430 347 L 537.76 347" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="224" cy="556" rx="7" ry="7" fill="none" stroke="#000000" pointer-events="none"/>
+        <path d="M 224 563 L 224 549 M 217 556 L 231 556" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 529.88 351.5 L 538.88 347 L 529.88 342.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 940 120 L 1066 120 L 1080 134 L 1080 190 L 940 190 L 940 120 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1066 120 L 1066 134 L 1080 134" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 138px; height: 1px; padding-top: 121px; margin-left: 942px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                                这是线程本地存储TLS，每个线程都有一份自己的存储区
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="942" y="133" fill="#000000" font-family="Helvetica" font-size="12px">
+                    这是线程本地存储TLS，每个线程都有一份自己的存储区
+                </text>
+            </switch>
+        </g>
+        <path d="M 105 86 L 105 60 L 335 60 L 335 86" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 105 86 L 105 120 L 335 120 L 335 86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 105 86 L 335 86" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="219.5" y="77.5">
+                Slot
+            </text>
+        </g>
+        <path d="M 105 90 L 335 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-109-99-222-26-0)" font-size="12px">
+            <text x="110.5" y="111.5">
+                +getTyped:template &lt;class T&gt; T&amp;
+            </text>
+        </g>
+        <path d="M 700 36 L 700 10 L 860 10 L 860 36" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 700 36 L 700 70 L 860 70 L 860 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 700 36 L 860 36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="779.5" y="27.5">
+                SlotAllocator
+            </text>
+        </g>
+        <path d="M 700 40 L 860 40" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-704-49-152-26-0)" font-size="12px">
+            <text x="705.5" y="61.5">
+                + allocateSlot:SlotPtr
+            </text>
+        </g>
+        <path d="M 785 230 L 783.21 84.12" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 783.05 71.12 L 789.71 84.04 L 776.71 84.2 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 520 696 L 520 670 L 780 670 L 780 696" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 520 696 L 520 730 L 780 730 L 780 696" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 520 696 L 780 696" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="649.5" y="687.5">
+                ThreadLocalObject
+            </text>
+        </g>
+        <path d="M 520 700 L 780 700" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-524-709-252-26-0)" font-size="12px">
+            <text x="525.5" y="721.5">
+                + asType: template &lt;class T&gt; T&amp;
+            </text>
+        </g>
+        <path d="M 860 574 L 1036 574 L 1050 588 L 1050 644 L 860 644 L 860 574 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1036 574 L 1036 588 L 1050 588" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 188px; height: 1px; padding-top: 575px; margin-left: 862px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                                所有需要被threadlocal存储的对象都要继承ThreadLocalObject基类
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="862" y="587" fill="#000000" font-family="Helvetica" font-size="12px">
+                    所有需要被threadlocal存储的对象都要继承ThreadLocalObject基类
+                </text>
+            </switch>
+        </g>
+        <path d="M 797.14 308 L 940 155" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 780 685 L 860 609" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 375 0 L 576 0 L 590 14 L 590 90 L 375 90 L 375 0 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 576 0 L 576 14 L 590 14" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 213px; height: 1px; padding-top: 1px; margin-left: 377px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                                所有需要被存储的信息都会被分配一个Slot槽位，作为以后存储数据和获取数据的唯一接口。index_作为索引指示了在每个TLS本地存储的数据的位置
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="377" y="13" fill="#000000" font-family="Helvetica" font-size="12px">
+                    所有需要被存储的信息都会被分配一个Slot槽位，作为以后存储数据和获取数据的唯一接口。index_作为索引指示了在每个TLS本地存储的数据的位置
+                </text>
+            </switch>
+        </g>
+        <path d="M 220 60 L 376.08 30.96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+        <path d="M 0 730 L 251 730 L 265 744 L 265 870 L 0 870 L 0 730 Z" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 251 730 L 251 744 L 265 744" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 263px; height: 1px; padding-top: 731px; margin-left: 2px;">
+                        <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                                线程TLS存储的对象在data_中，data_中具体某一个槽位上实际存储的是一个数据对象的share_ptr的智能指针，线程间可以共享一个对象也可以指向独立对象
+                                <br/>
+                                dispatcher_是每个线程的event_base句柄，slot中runOnAllThreads会向每个线程的dispatcher_中提交任务，每个线程的下次事件循环的时候就会执行这个任务，就可以将ThreadLocalObjectPtr存放到data_中对应的位置上
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="2" y="743" fill="#000000" font-family="Helvetica" font-size="12px">
+                    线程TLS存储的对象在data_中，data_中具体某一个槽位上实际存储的是一个数据对象的share_ptr的智能指针，线程间可以共享一个对象也可以指向独立对象...
+                </text>
+            </switch>
+        </g>
+        <path d="M 132.5 730 L 186.12 644" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>
