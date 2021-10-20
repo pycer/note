@@ -52,9 +52,4 @@ init-manage 是envoy用来管理target初始化的模块，先来看下envoy在�
 
 ## 实现原理
 
-### 添加Target的流程
-
-![](C:\Users\lee\Documents\note\envoy\assets\init-manager-add.drawio.png)
-
-### Manager 初始化所有Target的流程
-
+![](C:\Users\lee\Documents\note\envoy\assets\init-manager.drawio.png)
